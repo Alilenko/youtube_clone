@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const header = {
-  "X-RapidAPI-Key": "4ee25891a1mshd216869eb486c16p188e1cjsn12f41799c81b",
+  "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
   "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
 };
 

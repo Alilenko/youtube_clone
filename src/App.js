@@ -9,7 +9,7 @@ import { store } from "./redux/store";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/youtube_clone">
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Box>
