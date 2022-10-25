@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Box } from "@mui/material";
+import { ChannelDetails, Feed, SearchFeed, VideoDetails } from "./pages";
+import Navbar from "./components/Navbar";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./styles";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Box>
+            <Navbar />
+            <Routes>
+              <Route exact path="/:category" element={<Feed />} />
+              <Route exact path="/" element={<Feed />} />
+              <Route exact path="/video/:videoId" element={<VideoDetails />} />
+              <Route exact path="/channel/:id" element={<ChannelDetails />} />
+              <Route exact path="/search/:search" element={<SearchFeed />} />
+            </Routes>
+          </Box>
+        </ThemeProvider>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
