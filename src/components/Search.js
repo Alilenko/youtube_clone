@@ -11,7 +11,8 @@ const SearchInput = () => {
   const dispach = useDispatch();
   const navigate = useNavigate();
 
-  const onChange = () => {
+  const onChange = (e) => {
+    e.preventDefault();
     dispach(changeSearch(search));
     navigate(`/search/${search}`);
   };
@@ -19,7 +20,7 @@ const SearchInput = () => {
   return (
     <Paper
       component="form"
-      onSubmit={onChange}
+      onSubmit={(e) => onChange(e)}
       sx={{
         borderRadius: 20,
         border: "1px solid #e3e3e3",
