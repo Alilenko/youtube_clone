@@ -6,16 +6,12 @@ import VideoSkeleton from "../components/Skeletons/VideoSkeleton";
 import SideComponent from "../components/SideComponent";
 
 import { Box, Grid, Typography } from "@mui/material";
+import NotFound from "../components/error/NotFound";
 
 const SearchFeed = () => {
   const { search } = useParams();
 
   const { data, isLoading, error, isFetching } = useGetVideoQuery(search);
-  console.log(search);
-
-  if (error) {
-    return <div>Something went wrong</div>;
-  }
 
   return (
     <SideComponent>
@@ -28,6 +24,7 @@ const SearchFeed = () => {
         >
           {search} <span style={{ color: "#F31503" }}>video</span>
         </Typography>
+        {error ? <NotFound /> : null}
         {isFetching ? (
           <Grid container spacing={2} direction="row" wrap="wrap">
             {[0, 1, 2, 3, 4, 5, 6, 7].map((item) => (

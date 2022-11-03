@@ -18,6 +18,7 @@ import CommentsList from "../components/Comments/ComentsList";
 
 import { Box, Stack, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import NotFound from "../components/error/NotFound";
 
 const VideoDetails = () => {
   const { videoId } = useParams();
@@ -29,7 +30,7 @@ const VideoDetails = () => {
     return <div>Loading</div>;
   }
   if (error) {
-    return <div>Something went wrong</div>;
+    return <NotFound />;
   }
 
   return <>{data.items ? <View video={data} videoId={videoId} /> : null}</>;

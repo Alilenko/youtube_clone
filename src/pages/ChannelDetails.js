@@ -7,20 +7,18 @@ import ChannelHeaderSkeleton from "../components/Skeletons/ChannelHeaderSkeleton
 import TabsPanel from "../components/Tabs";
 
 import { Grid, Box } from "@mui/material";
+import NotFound from "../components/error/NotFound";
 
 const ChannelDetails = () => {
   const { id } = useParams();
   const { data, isFetching, isLoading, error } = useGetChannelQuery(id);
-
-  if (error) {
-    return <div>Something went wrong</div>;
-  }
 
   return (
     <SideComponent>
       <Box sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
         <Grid container direction="column">
           <Grid item>
+            {error ? <NotFound /> : null}
             {isFetching || isLoading ? <ChannelHeaderSkeleton /> : null}
             {data?.items ? <ChannelHeader data={data} /> : null}
           </Grid>
