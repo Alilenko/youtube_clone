@@ -1,22 +1,25 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetVideoQuery } from "../servises/fetchApi";
 import VideoList from "../components/VideoList";
 import VideoSkeleton from "../components/Skeletons/VideoSkeleton";
 import SideComponent from "../components/SideComponent";
+import { changeCategory } from "../redux/appSlice";
 
 import { Box, Grid, Typography } from "@mui/material";
 import NotFound from "../components/error/NotFound";
 
 const Feed = () => {
   const { category } = useSelector((state) => state.app);
-  const navigate = useNavigate();
+  let path = useParams();
+  const dispach = useDispatch();
   const { data, isLoading, error, isFetching } = useGetVideoQuery(category);
+  console.log(path.category);
 
   useEffect(() => {
-    navigate(`/${category}`);
-  }, []);
+    dispach(changeCategory(path.category));
+  }, [path.category]);
 
   return (
     <SideComponent>

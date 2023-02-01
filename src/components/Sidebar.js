@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { categories } from "../utils/constans";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { changeCategory } from "../redux/appSlice";
 
 import { Stack } from "@mui/material";
@@ -10,6 +10,12 @@ const Sidebar = () => {
   const { category } = useSelector((state) => state.app);
   const dispach = useDispatch();
   const navigate = useNavigate();
+  let path = useParams();
+  useEffect(() => {
+    if (path.category !== category) {
+      dispach(changeCategory(path.category));
+    }
+  }, [category]);
 
   const handleClick = (e) => {
     dispach(changeCategory(e));

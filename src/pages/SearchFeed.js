@@ -10,7 +10,7 @@ import NotFound from "../components/error/NotFound";
 
 const SearchFeed = () => {
   const { search } = useParams();
-
+  
   const { data, isLoading, error, isFetching } = useGetVideoQuery(search);
 
   return (
